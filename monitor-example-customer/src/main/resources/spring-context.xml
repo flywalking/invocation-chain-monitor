@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/jee  http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!--开启注解 -->
+	<context:annotation-config />
+	<!-- 开启自动切面代理 -->
+	<aop:aspectj-autoproxy />
+
+	<context:component-scan base-package="com.demo.*" />
+	<context:property-placeholder ignore-unresolvable="true" location="classpath*:/config.properties" />
+
+	<import resource="classpath*:/spring-dubbo-config.xml" />
+	<import resource="classpath*:/spring-dubbo-customer.xml" />
+	<import resource="classpath*:/spring-scheduler.xml" />
+</beans>

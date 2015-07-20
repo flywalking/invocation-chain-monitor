@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 控制台输出器 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-16(%d{MM-dd HH:mm:ss.SSS}) %-5thread %-5level %logger{1} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="simple_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${catalina.home}/logs/simple_log.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-16(%d{MM-dd HH:mm:ss.SSS}) %-5level %logger{1} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<!-- 透视镜追踪记录文件,按天生成 -->
+	<appender name="photoscopeTracer" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${catalina.home}/logs/photoscopeTracer.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${catalina.home}/logs/photoscopeTracer.log.%d{yyyy-MM-dd}</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%-16(%d{MM-dd HH:mm:ss.SSS}) %-5thread %-5level %logger{1} %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 透视镜InvokeSpanLog -->
+	<logger name="com.aicai.photoscope.common.domain.InvokeSpan" level="info" additivity="false">
+		<appender-ref ref="photoscopeTracer" />
+	</logger>
+	<!-- 透视镜InvokeStampLog -->
+	<logger name="com.aicai.photoscope.common.domain.InvokeStamp" level="info" additivity="false">
+		<appender-ref ref="photoscopeTracer" />
+	</logger>
+
+	<logger name="org.springframework" level="INFO" />
+	<logger name="org.hibernate" level="INFO" />
+	<logger name="org.apache.http" level="WARN" />
+
+	<logger name="simple_log" level="DEBUG">
+		<appender-ref ref="simple_log" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+	</root>
+
+</configuration>  
