@@ -30,11 +30,11 @@
 	</appender>
 
 	<!-- 透视镜InvokeSpanLog -->
-	<logger name="com.aicai.photoscope.common.domain.InvokeSpan" level="info" additivity="false">
+	<logger name="com.demo.monitor.domain.InvokeSpan" level="info" additivity="false">
 		<appender-ref ref="photoscopeTracer" />
 	</logger>
 	<!-- 透视镜InvokeStampLog -->
-	<logger name="com.aicai.photoscope.common.domain.InvokeStamp" level="info" additivity="false">
+	<logger name="com.demo.monitor.domain.InvokeStamp" level="info" additivity="false">
 		<appender-ref ref="photoscopeTracer" />
 	</logger>
 

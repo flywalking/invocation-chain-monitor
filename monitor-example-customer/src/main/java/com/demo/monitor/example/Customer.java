@@ -13,6 +13,6 @@ public class Customer {
     Provider provider;
 
     public void refer() {
-        provider.getTime();
+        System.out.println(provider.getTime());
     }
 }

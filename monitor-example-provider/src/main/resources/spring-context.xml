@@ -19,5 +19,4 @@
 
 	<import resource="classpath*:/spring-dubbo-config.xml" />
 	<import resource="classpath*:/spring-dubbo-provider.xml" />
-	<import resource="classpath*:/spring-dubbo-customer.xml" />
 </beans>
